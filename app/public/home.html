@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hot Restaurant</title>
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="jumbotron">
+            <h1><i class="fa fa-flam" aria-hidden="true"></i> Hot Restaurant</h1>
+            <hr>
+            <h2>Current Reservation and Waiting List </h2>
+            <br>
+
+            <div>
+                <a href="/reservation"><button type="button" class="btn btn-lg btn-primary">
+                        <h4><span class="glyphicon glyphicon-list-alt"></span> Make Reservation</h4>
+                    </button></a>
+            </div>
+
+        </div>
+        <div class="jumbotron">
+            <h2>Current Reservation </h2>
+
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/Suha19/FriendFinder">GitHub
+                        Repo</a></p>
+            </div>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript">
+        // Question: What does this code do?
+        $("#add-btn").on("click", function (event) {
+            event.preventDefault();
+
+            $.post("/api/friends", newFriend)
+                .then(function (data) {
+
+                });
+
+        });
+    </script>
+
+</body>
+
+</html>
