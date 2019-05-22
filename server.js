@@ -1,24 +1,38 @@
 // Dependencies
-var http = require("http");
-var fs = require("fs");
+// =============================================================
+var express = require("express");
+var path = require("path");
 
+// Sets up the Express App
+// =============================================================
+var app = express();
 var PORT = 3000;
 
-var server = http.createServer(handleRequest);
-
-function handleRequest(req, res) {
-    var path = req.url;
-
-    switch (path) {
-        case "/survey":
-            return renderSurveyPage(req, res);
-        default:
-            return renderWelcomePage(req, res);
-    }
-}
+// Sets up the Express app to handle data parsing
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 
-// Starts our server.
-server.listen(PORT, function () {
-    console.log("Server listening on: http://localhost:" + PORT);
+// Routes
+// =============================================================
+
+// Basic route that sends the user first to the AJAX Page
+app.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname, "app/public/home.html"));
+});
+
+app.get("/reserve", function(req, res) {
+  res.sendFile(path.join(__dirname, "app/public/reserve.html"));
+});
+
+// Displays all poeple
+app.get("/api/poeple", function(req, res) {
+  return res.json(poeple);
+});
+
+
+// Starts the server to begin listening
+// =============================================================
+app.listen(PORT, function() {
+  console.log("App listening on PORT " + PORT);
 });
